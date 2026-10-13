@@ -121,7 +121,7 @@ sup a{color:var(--orange);text-decoration:none;font-family:var(--label);font-wei
 .stop + .stop > div{border-top:1px solid var(--sage);padding-top:2.75rem;margin-top:-2.75rem;}
 .milepost{position:sticky;top:calc(7.6rem + env(safe-area-inset-top,0px));align-self:start;margin:0;width:9.5rem;margin-left:0.875rem;}
 .sign{display:block;background:var(--paper);border:4px solid var(--evergreen);border-radius:.6rem;padding:.6rem .75rem .7rem;text-align:center;}
-.sign b{display:block;font-family:var(--display);font-style:italic;font-weight:700;font-size:2.4rem;line-height:.9;letter-spacing:-.01em;color:var(--evergreen-dark);}
+.sign b{display:block;font-family:var(--display);font-style:italic;font-weight:700;font-size:2.25rem;line-height:.9;letter-spacing:-.01em;color:var(--evergreen-dark);white-space:nowrap;}
 .sign small{display:block;font-family:var(--label);font-weight:600;font-size:.95rem;color:var(--secondary);margin-top:.35rem;line-height:1.25;}
 .sign-post{display:block;width:.6rem;height:2.5rem;background:var(--charcoal);margin:0 auto;border-radius:0 0 .2rem .2rem;}
 .hazard{display:flex;gap:.75rem;align-items:flex-start;font-family:var(--h3);font-style:italic;font-weight:700;font-size:1.1rem;line-height:1.35;color:var(--evergreen-dark);margin:0 0 1.5rem;padding:.9rem 1rem;background:var(--pale);border-radius:.4rem;}
@@ -192,6 +192,7 @@ footer{max-width:var(--wide);margin:0 auto;padding:2rem 1.25rem 3rem;font-family
 
 /* take the wheel */
 .drive-controls{display:flex;flex-wrap:wrap;gap:1rem 2rem;align-items:center;margin:1.5rem 0 1rem;}
+.drive-kinds{font-family:var(--label);font-weight:600;color:var(--secondary);font-size:1rem;margin:0 0 1rem;}
 .convoy{display:flex;flex-wrap:wrap;gap:.5rem;align-items:center;}
 .convoy-toggle[aria-pressed="false"]{opacity:.55;text-decoration:line-through;}
 .drive-buttons{display:flex;gap:.5rem;margin-left:auto;}
@@ -200,10 +201,9 @@ footer{max-width:var(--wide);margin:0 auto;padding:2rem 1.25rem 3rem;font-family
 .go.secondary{color:var(--evergreen);background:var(--paper);}
 .go.secondary:hover{background:var(--pale);}
 .drive-road{display:block;width:100%;height:auto;background:var(--paper);border:1px solid var(--sage);}
-.dcar{transform:translateX(-700px);transform-box:fill-box;transform-origin:50% 100%;}
-.dcar.ditch{transform-origin:50% 100%;}
+.dcar{transform:translateX(-80px);transform-box:fill-box;transform-origin:50% 100%;}
 .dcar .fate{opacity:0;}
-.dcar.notes .fate,.dcar.map .fate,.dcar.ditch .fate{opacity:1;}
+.dcar.notes .fate,.dcar.map .fate{opacity:1;}
 @media (prefers-reduced-motion:no-preference){
   .dcar{transition:transform 1.1s cubic-bezier(.3,.7,.3,1),opacity .6s;}
   .dcar .fate{transition:opacity .5s .9s;}
@@ -216,8 +216,63 @@ footer{max-width:var(--wide);margin:0 auto;padding:2rem 1.25rem 3rem;font-family
 .drive-caption sup a{color:var(--orange);}
 @media (max-width:640px){.drive-buttons{margin-left:0;}}
 
+/* flags for the working group */
+.flag{display:inline-block;font-family:var(--label);font-weight:600;font-size:.9rem;letter-spacing:.02em;color:var(--paper);background:var(--orange);padding:.2rem .65rem;border-radius:.25rem;margin:0 0 .6rem;}
+.flag-note{font-size:1rem;color:var(--secondary);margin:0 0 1.25rem;max-width:var(--measure);}
+
+/* what it looks like */
+.looks{list-style:none;padding:0;margin:1rem 0;}
+.looks li{padding:.9rem 0;border-top:1px solid var(--sage);margin:0;}
+.looks h4{margin-bottom:.25rem;}
+.looks p{margin:0;font-size:1.05rem;}
+
+/* red phone */
+.redphone{width:8rem;height:auto;float:right;margin:0 0 1rem 1.5rem;}
+@media (max-width:720px){.redphone{width:5.5rem;}}
+
+/* cases dropdown */
+.cases-wrap{margin:1.75rem 0;border-top:1px solid var(--sage);border-bottom:1px solid var(--sage);}
+.cases-wrap summary{cursor:pointer;font-family:var(--h3);font-style:italic;font-weight:700;font-size:1.2rem;color:var(--evergreen);padding:1rem 0;list-style:none;}
+.cases-wrap summary::-webkit-details-marker{display:none;}
+.cases-wrap summary::before{content:"+";display:inline-block;width:1.4rem;color:var(--orange);font-style:normal;font-family:var(--label);}
+.cases-wrap[open] summary::before{content:"\2212";}
+.cases-wrap .cases{margin-top:0;}
+.cases-wrap .cases li:last-child{border-bottom:0;}
+
+/* pop-ups */
+.peeks{display:flex;flex-wrap:wrap;gap:.5rem;margin:0 0 1.5rem;}
+.peek{font-family:var(--label);font-weight:600;font-size:.98rem;color:var(--evergreen);background:var(--paper);border:1.5px solid var(--evergreen);border-radius:999px;padding:.32rem .95rem;cursor:pointer;line-height:1.2;vertical-align:middle;}
+.peek:hover{background:var(--pale);}
+.pop{border:0;padding:0;background:transparent;width:min(42rem,94vw);max-height:calc(100vh - 2rem);overflow:auto;}
+.pop::backdrop{background:rgba(0,25,15,.55);}
+.pop-open .top,.pop-open .seatbar{visibility:hidden;}
+.pop-inner{outline:none;background:var(--paper);border-top:5px solid var(--magenta);padding:1.25rem 1.5rem 1.5rem;border-radius:.4rem;box-shadow:0 20px 50px rgba(0,0,0,.28);}
+.pop-tag{font-family:var(--label);font-weight:600;font-size:.9rem;color:var(--magenta);margin:0 0 1rem;text-transform:uppercase;letter-spacing:.05em;}
+.pop-note{font-size:1rem;color:var(--secondary);margin:1rem 0 1.25rem;}
+.pop h3{margin:1.5rem 0 .6rem;}
+.pop h3:first-of-type{margin-top:0;}
+.mail{border:1px solid var(--sage);border-radius:.3rem;font-size:1rem;overflow:hidden;}
+.mail-head{background:var(--pale);padding:.75rem 1rem;border-bottom:1px solid var(--sage);display:grid;gap:.2rem;font-family:var(--label);overflow-wrap:anywhere;}
+.mail-head b{display:inline-block;width:4.2rem;color:var(--secondary);font-weight:600;}
+.mail-body{padding:1rem;}
+.mail-body p{margin:0 0 .75rem;}
+.mail-body p:last-child{margin:0;}
+.fakelink{color:#1a56c4;text-decoration:underline;}
+.phone{max-width:20rem;margin:0 auto;background:var(--pale);border-radius:1.5rem;padding:1.25rem 1rem;}
+.phone-from{font-family:var(--label);font-size:.9rem;color:var(--secondary);text-align:center;margin-bottom:.75rem;}
+.bubble{background:#e4e6e8;color:#141414;border-radius:1.1rem;padding:.7rem .9rem;font-size:1rem;line-height:1.4;max-width:16rem;}
+.triage{border:1px solid var(--sage);border-radius:.3rem;padding:1rem;font-size:1rem;margin-bottom:1rem;}
+.triage-head{font-family:var(--h3);font-style:italic;font-weight:700;font-size:1.15rem;color:var(--evergreen-dark);margin-bottom:.6rem;}
+.triage dl{display:grid;grid-template-columns:6rem 1fr;gap:.35rem 1rem;margin:0;}
+.triage dt{font-family:var(--label);font-weight:600;color:var(--secondary);}
+.triage dd{margin:0;}
+.register{width:100%;border-collapse:collapse;font-size:.95rem;line-height:1.4;}
+.register th,.register td{text-align:left;vertical-align:top;padding:.5rem .6rem .5rem 0;border-top:1px solid var(--sage);}
+.register th{font-family:var(--label);font-weight:600;color:var(--secondary);border-top:0;}
+@media (max-width:600px){.triage dl{grid-template-columns:1fr;gap:.1rem .5rem;}.triage dt{margin-top:.5rem;}.register{font-size:.85rem;}}
+
 @media print{
-  .top,.seatbar,.drive-controls{display:none;}
+  .top,.seatbar,.drive-controls,.peeks,.peek,.pop,.flag{display:none;}
   .lane{display:block !important;}
   .lane-name{display:block !important;}
   .lane + .lane{margin-top:1.5rem;padding-top:1rem;border-top:1px dashed var(--sage);}
@@ -234,6 +289,9 @@ footer{max-width:var(--wide);margin:0 auto;padding:2rem 1.25rem 3rem;font-family
 <svg width="0" height="0" style="position:absolute" aria-hidden="true">
   <defs>
     <linearGradient id="radiant" gradientUnits="userSpaceOnUse" x1="0" y1="0" x2="1200" y2="0">
+      <stop offset="0" stop-color="#e85d04"/><stop offset="1" stop-color="#e800a5"/>
+    </linearGradient>
+    <linearGradient id="radiant2" gradientUnits="userSpaceOnUse" x1="0" y1="0" x2="1400" y2="0">
       <stop offset="0" stop-color="#e85d04"/><stop offset="1" stop-color="#e800a5"/>
     </linearGradient>
 
@@ -327,6 +385,33 @@ footer{max-width:var(--wide);margin:0 auto;padding:2rem 1.25rem 3rem;font-family
       <path d="M30 70h196" stroke="#e800a5" stroke-width="3"/>
     </symbol>
 
+    <!-- a county car, small, one of many -->
+    <symbol id="car-mini" viewBox="0 0 60 30">
+      <path d="M4 22v-6q0-3 3-3l9-1 5-6q1-1 3-1h16q2 0 3 1l5 6 9 1q3 0 3 3v6q0 2-2 2H6q-2 0-2-2Z" fill="#779381"/>
+      <path d="M21 7h8v6h-12Z" fill="#d1dbd6"/><path d="M31 7h7l5 6H31Z" fill="#d1dbd6"/>
+      <circle cx="16" cy="24" r="4" fill="#00190f"/><circle cx="44" cy="24" r="4" fill="#00190f"/>
+      <circle cx="16" cy="24" r="1.5" fill="#d1dbd6"/><circle cx="44" cy="24" r="1.5" fill="#d1dbd6"/>
+    </symbol>
+
+    <!-- the shine on the lab's car -->
+    <symbol id="shine" viewBox="0 0 240 110">
+      <path d="M62 60q60-8 120-5" stroke="#ffffff" stroke-width="2.5" stroke-linecap="round" fill="none" opacity=".6"/>
+      <path d="M124 38h28" stroke="#ffffff" stroke-width="2" stroke-linecap="round" opacity=".7"/>
+      <path d="M200 64l10-3" stroke="#ffffff" stroke-width="2" stroke-linecap="round" opacity=".7"/>
+    </symbol>
+
+    <!-- the red phone -->
+    <symbol id="redphone" viewBox="0 0 120 100">
+      <path d="M22 96q-10 0-10-10V58q0-14 14-16h68q14 2 14 16v28q0 10-10 10Z" fill="#c62828"/>
+      <path d="M12 88h96" stroke="#8e1b1b" stroke-width="6"/>
+      <rect x="20" y="36" width="10" height="12" rx="2" fill="#8e1b1b"/><rect x="90" y="36" width="10" height="12" rx="2" fill="#8e1b1b"/>
+      <circle cx="60" cy="68" r="15" fill="#f0f4f2"/><circle cx="60" cy="68" r="9" fill="#c62828"/>
+      <g fill="#c62828"><circle cx="60" cy="56" r="1.6"/><circle cx="68" cy="59" r="1.6"/><circle cx="72" cy="67" r="1.6"/><circle cx="68" cy="76" r="1.6"/><circle cx="52" cy="59" r="1.6"/><circle cx="48" cy="67" r="1.6"/><circle cx="52" cy="76" r="1.6"/></g>
+      <path d="M26 32q34-22 68 0" stroke="#c62828" stroke-width="13" stroke-linecap="round" fill="none"/>
+      <circle cx="24" cy="31" r="11" fill="#c62828"/><circle cx="96" cy="31" r="11" fill="#c62828"/>
+      <path d="M103 44c3 6 9 6 9 12s-6 6-6 12 6 6 6 12" stroke="#8e1b1b" stroke-width="3" fill="none" stroke-linecap="round"/>
+    </symbol>
+
     <!-- hazard diamond -->
     <symbol id="hazard" viewBox="0 0 40 40">
       <rect x="7" y="7" width="26" height="26" rx="4" transform="rotate(45 20 20)" fill="#e85d04"/>
@@ -342,7 +427,7 @@ footer{max-width:var(--wide);margin:0 auto;padding:2rem 1.25rem 3rem;font-family
     <nav aria-label="Sections">
       <a href="#scenario">Tuesday, 6:10 a.m.</a>
       <a href="#line">The line</a>
-      <a href="#now">Why now</a>
+      <a href="#now">The model</a>
       <a href="#blind">Driving blind</a>
       <a href="#drive">Take the wheel</a>
       <a href="#roadmap">The road</a>
@@ -356,10 +441,10 @@ footer{max-width:var(--wide);margin:0 auto;padding:2rem 1.25rem 3rem;font-family
 <main id="top">
 
 <div class="hero">
-  <p class="kicker">Working draft. Oct. 12, 2026.</p>
+  <p class="kicker">Working draft. Oct. 13, 2026.</p>
   <h1>Day One</h1>
 
-  <svg class="road-banner" viewBox="0 0 1200 250" preserveAspectRatio="xMinYMid slice" role="img" aria-label="A 12-mile road with four mileposts and three cars: a county sedan, a navigator's hatchback and a frontier lab's sports car">
+  <svg class="road-banner" viewBox="0 0 1200 250" preserveAspectRatio="xMinYMid slice" role="img" aria-label="A 12-mile road with four mileposts: a column of county cars, a navigator's hatchback and a frontier lab's sports car">
     <rect x="0" y="118" width="1200" height="112" fill="#413b3e"/>
     <path d="M0 124h1200M0 224h1200" stroke="#f0f4f2" stroke-width="3"/>
     <path d="M0 144h1200" stroke="url(#radiant)" stroke-width="5" stroke-dasharray="40 28"/>
@@ -385,14 +470,14 @@ footer{max-width:var(--wide);margin:0 auto;padding:2rem 1.25rem 3rem;font-family
       <rect x="1046" y="92" width="8" height="28" fill="#413b3e"/>
       <rect x="978" y="18" width="144" height="78" rx="10" fill="#fff" stroke="#1d4b2f" stroke-width="5"/>
       <text class="sign-text" x="1050" y="62" text-anchor="middle" font-size="38">Mile 12</text>
-      <text class="sign-sub" x="1050" y="84" text-anchor="middle" font-size="14">The association</text>
+      <text class="sign-sub" x="1050" y="84" text-anchor="middle" font-size="14">Someone answers</text>
     </g>
-    <g class="roll r1"><use href="#car-off" x="200" y="140" width="200" height="92"/></g>
+    <g class="roll r1"><use href="#car-mini" x="136" y="192" width="64" height="32"/><use href="#car-mini" x="66" y="192" width="64" height="32"/><use href="#car-mini" x="-4" y="192" width="64" height="32"/><use href="#car-mini" x="-74" y="192" width="64" height="32"/><use href="#car-mini" x="-144" y="192" width="64" height="32"/><use href="#car-mini" x="-214" y="192" width="64" height="32"/><use href="#car-mini" x="-284" y="192" width="64" height="32"/><use href="#car-mini" x="-354" y="192" width="64" height="32"/><use href="#car-mini" x="-424" y="192" width="64" height="32"/><use href="#car-mini" x="-494" y="192" width="64" height="32"/><use href="#car-off" x="200" y="140" width="200" height="92"/></g>
     <g class="roll r2"><use href="#car-nav" x="520" y="140" width="200" height="92"/></g>
     <g class="roll r3"><use href="#car-lab" x="840" y="140" width="200" height="92"/></g>
   </svg>
 
-  <p class="deck">A preliminary roadmap for Election Security Navigators, election officials and frontier labs. One road, 12 miles, one mile a month. Three cars. What each driver needs, what exists and who builds the rest.</p>
+  <p class="deck">A preliminary roadmap for Election Security Navigators, election officials and frontier labs. One road, 12 miles, one mile a month. Three kinds of car, on purpose. What each driver needs, what exists and who builds the rest.</p>
   <p class="deck-sub">Ready for Tuesday. For discussion.</p>
 </div>
 
@@ -418,7 +503,11 @@ footer{max-width:var(--wide);margin:0 auto;padding:2rem 1.25rem 3rem;font-family
         <p>The clerk calls the county IT director. He asks if she has called the state. She asks: called who?</p>
       </li>
     </ul>
-    <p>The email is the easy part. An open-weight model writes it on a laptop, in the county's voice, with no one watching.<sup><a href="#s13">13</a></sup><sup><a href="#s15">15</a></sup> The roster is not fiction. In August a vendor incident in Wake County, N.C., exposed poll workers' names and email addresses. The county's own worst case was phishing.<sup><a href="#s1">1</a></sup></p>
+    <p>The email is the easy part. An open-weight model writes it on a laptop, in the county's voice, with no one watching.<sup><a href="#s13">13</a></sup><sup><a href="#s15">15</a></sup> The roster is the damage. It was gone by 9:31 p.m.</p>
+    <div class="peeks">
+      <button class="peek" type="button" data-pop="pop-email">See the email</button>
+      <button class="peek" type="button" data-pop="pop-text">See the text</button>
+    </div>
     <p class="pivot">Who does she call? The answer should be an Election Security Navigator. This page is the drive that puts one there.</p>
   </div>
 </section>
@@ -426,22 +515,21 @@ footer{max-width:var(--wide);margin:0 auto;padding:2rem 1.25rem 3rem;font-family
 <section id="line">
   <div class="inner">
     <h2>This roadmap is about cyber.</h2>
-    <p class="lede">Cyber is a crime. Someone breaks in, steals, locks or changes something. Influence operations are a different problem with different responders.</p>
-    <p>A deepfake robocall is not this navigator's job. A phishing email that ends in a stolen poll worker roster is.</p>
-    <p>Two reasons the line matters. Election officials have spent years chasing the loudest headline, and it has mostly been about information. And the cyber community is a quieter room. It does not care who you are. It is a safer place to try new approaches.</p>
+    <p class="lede">Cyber is a crime. Someone breaks in, steals, locks or changes something. It has a victim, an incident and a playbook.</p>
+    <p>Election offices have always had help with this from somewhere else. The state. A vendor. An ISAC. The county IT director. Nobody expects a clerk to be her own security team, and nobody faults her for asking.</p>
+    <p>Cyber also has one language. A breach means the same thing in every county and to everyone who hears about it. That makes it a safer place to try new approaches, and the right place to start.</p>
   </div>
 </section>
 
 <section id="now" class="tint">
   <div class="inner">
-    <h2>Nobody is waiting for this.</h2>
-    <p class="lede">There is no galvanizing moment. The federal partner that used to carry election officials' attention has stepped back.</p>
+    <h2>The model already exists.</h2>
+    <p class="lede">Seven states run navigator programs today. The job has grown since they started. So has what a small team can do.</p>
     <ul class="facts">
-      <li>Federal funding for the EI-ISAC was cut in March 2025.<sup><a href="#s2">2</a></sup> The fiscal 2027 budget proposes eliminating CISA's election security program, including the regional election security advisers.<sup><a href="#s3">3</a></sup></li>
-      <li>The Center for Internet Security now charges for ISAC membership. About 500 election offices had signed up as of late 2025.<sup><a href="#s4">4</a></sup></li>
-      <li>CISA's Sept. 24, 2026, Election Infrastructure Security Plan says many local offices struggle with basic cybersecurity hygiene and timely patching.<sup><a href="#s5">5</a></sup></li>
-      <li>Local officials want the gap filled. Broad majorities in the Brennan Center's 2026 survey support someone providing the training, exercises and incident response the federal government used to.<sup><a href="#s8">8</a></sup></li>
-      <li>The navigator model works where it exists. Florida, Illinois, Iowa, Massachusetts, Michigan, Minnesota and Ohio run programs. In Illinois every county meets its navigator monthly.<sup><a href="#s6">6</a></sup> Minnesota runs an in-house navigator team.<sup><a href="#s7">7</a></sup></li>
+      <li>Florida, Illinois, Iowa, Massachusetts, Michigan, Minnesota and Ohio run navigator programs. In Illinois every county meets its navigator monthly.<sup><a href="#s6">6</a></sup> Minnesota runs an in-house navigator team.<sup><a href="#s7">7</a></sup></li>
+      <li>The model was built for a few people covering many offices. That math is better now than when the programs began. One navigator with a tool that checks a suspicious message, a model that runs locally and a scenario written for this state can reach more offices, faster, than one navigator with a phone and a drive.</li>
+      <li>Local officials want the help. Broad majorities in the Brennan Center's 2026 survey support someone providing the training, exercises and incident response the federal government used to.<sup><a href="#s8">8</a></sup></li>
+      <li>The federal help is thinner. Funding for the EI-ISAC was cut in March 2025.<sup><a href="#s2">2</a></sup> The fiscal 2027 budget proposes eliminating CISA's election security program.<sup><a href="#s3">3</a></sup> The Center for Internet Security now charges for ISAC membership, and about 500 election offices had signed up as of late 2025.<sup><a href="#s4">4</a></sup> CISA's Sept. 24, 2026, Election Infrastructure Security Plan says many local offices struggle with basic cybersecurity hygiene and timely patching.<sup><a href="#s5">5</a></sup></li>
     </ul>
     <p>This road closes two gaps. Navigators have nowhere to meet each other. Labs have nowhere to meet them.</p>
   </div>
@@ -475,7 +563,8 @@ footer{max-width:var(--wide);margin:0 auto;padding:2rem 1.25rem 3rem;font-family
 <section id="drive" class="tint">
   <div class="inner-wide">
     <h2>Take the wheel.</h2>
-    <p class="lede" style="max-width:var(--measure)">Pick who is in the convoy. Drive the 12 miles. Drop someone at any milepost and see what happens.</p>
+    <p class="lede" style="max-width:var(--measure)">Three kinds of car. That is by design. Each keeps its own wheel. Pick who is in the convoy, drive the 12 miles and drop someone at any milepost to see what happens.</p>
+    <p class="drive-kinds">Thirty-six county cars. Two navigators. One car that is much nicer than the others.</p>
 
     <div class="drive-controls">
       <div class="convoy" role="group" aria-label="Who is in the convoy">
@@ -490,43 +579,46 @@ footer{max-width:var(--wide);margin:0 auto;padding:2rem 1.25rem 3rem;font-family
       </div>
     </div>
 
-    <svg class="drive-road" viewBox="0 0 1200 300" preserveAspectRatio="xMidYMid meet" role="img" aria-label="The convoy on the 12-mile road">
-      <rect x="0" y="230" width="1200" height="70" fill="#d1dbd6"/>
-      <rect x="0" y="118" width="1200" height="112" fill="#413b3e"/>
-      <path d="M0 124h1200M0 224h1200" stroke="#f0f4f2" stroke-width="3"/>
-      <path d="M0 144h1200" stroke="url(#radiant)" stroke-width="5" stroke-dasharray="40 28"/>
+    <svg class="drive-road" viewBox="0 0 1400 340" preserveAspectRatio="xMidYMid meet" role="img" aria-label="The convoy on the 12-mile road: a column of county cars, two navigator hatchbacks and one frontier lab sports car">
+      <rect x="0" y="270" width="1400" height="70" fill="#d1dbd6"/>
+      <rect x="0" y="104" width="1400" height="166" fill="#413b3e"/>
+      <path d="M0 110h1400M0 264h1400" stroke="#f0f4f2" stroke-width="3"/>
+      <path d="M0 187h1400" stroke="url(#radiant2)" stroke-width="5" stroke-dasharray="40 28"/>
       <g>
-        <rect x="146" y="92" width="8" height="28" fill="#413b3e"/>
-        <rect x="78" y="18" width="144" height="78" rx="10" fill="#fff" stroke="#1d4b2f" stroke-width="5"/>
-        <text class="sign-text" x="150" y="62" text-anchor="middle" font-size="38">Mile 0</text>
-        <text class="sign-sub" x="150" y="84" text-anchor="middle" font-size="14">Day one</text>
+        <rect x="171" y="92" width="8" height="14" fill="#413b3e"/>
+        <rect x="103" y="18" width="144" height="78" rx="10" fill="#fff" stroke="#1d4b2f" stroke-width="5"/>
+        <text class="sign-text" x="175" y="62" text-anchor="middle" font-size="38">Mile 0</text>
+        <text class="sign-sub" x="175" y="84" text-anchor="middle" font-size="14">Day one</text>
       </g>
       <g>
-        <rect x="446" y="92" width="8" height="28" fill="#413b3e"/>
-        <rect x="378" y="18" width="144" height="78" rx="10" fill="#fff" stroke="#1d4b2f" stroke-width="5"/>
-        <text class="sign-text" x="450" y="62" text-anchor="middle" font-size="38">Mile 3</text>
-        <text class="sign-sub" x="450" y="84" text-anchor="middle" font-size="14">Show up</text>
+        <rect x="521" y="92" width="8" height="14" fill="#413b3e"/>
+        <rect x="453" y="18" width="144" height="78" rx="10" fill="#fff" stroke="#1d4b2f" stroke-width="5"/>
+        <text class="sign-text" x="525" y="62" text-anchor="middle" font-size="38">Mile 3</text>
+        <text class="sign-sub" x="525" y="84" text-anchor="middle" font-size="14">Show up</text>
       </g>
       <g>
-        <rect x="746" y="92" width="8" height="28" fill="#413b3e"/>
-        <rect x="678" y="18" width="144" height="78" rx="10" fill="#fff" stroke="#1d4b2f" stroke-width="5"/>
-        <text class="sign-text" x="750" y="62" text-anchor="middle" font-size="38">Mile 6</text>
-        <text class="sign-sub" x="750" y="84" text-anchor="middle" font-size="14">Navigators meet</text>
+        <rect x="871" y="92" width="8" height="14" fill="#413b3e"/>
+        <rect x="803" y="18" width="144" height="78" rx="10" fill="#fff" stroke="#1d4b2f" stroke-width="5"/>
+        <text class="sign-text" x="875" y="62" text-anchor="middle" font-size="38">Mile 6</text>
+        <text class="sign-sub" x="875" y="84" text-anchor="middle" font-size="14">Navigators meet</text>
       </g>
       <g>
-        <rect x="1046" y="92" width="8" height="28" fill="#413b3e"/>
-        <rect x="978" y="18" width="144" height="78" rx="10" fill="#fff" stroke="#1d4b2f" stroke-width="5"/>
-        <text class="sign-text" x="1050" y="62" text-anchor="middle" font-size="38">Mile 12</text>
-        <text class="sign-sub" x="1050" y="84" text-anchor="middle" font-size="14">The association</text>
+        <rect x="1221" y="92" width="8" height="14" fill="#413b3e"/>
+        <rect x="1153" y="18" width="144" height="78" rx="10" fill="#fff" stroke="#1d4b2f" stroke-width="5"/>
+        <text class="sign-text" x="1225" y="62" text-anchor="middle" font-size="38">Mile 12</text>
+        <text class="sign-sub" x="1225" y="84" text-anchor="middle" font-size="14">Someone answers</text>
       </g>
-      <g class="dcar" id="dcar-N"><use href="#car-nav" y="140" width="200" height="92"/><use class="fate" href="#blind-nav" y="140" width="200" height="92"/></g>
-      <g class="dcar" id="dcar-O"><use href="#car-off" y="140" width="200" height="92"/><use class="fate" href="#blind-off" y="140" width="200" height="92"/></g>
-      <g class="dcar" id="dcar-L"><use href="#car-lab" y="140" width="200" height="92"/><use class="fate" href="#blind-lab" y="140" width="200" height="92"/></g>
+      <g class="dcar" id="u-UM"><use href="#car-mini" x="-44" y="159" width="40" height="20"/><use href="#car-mini" x="-88" y="159" width="40" height="20"/><use href="#car-mini" x="-132" y="159" width="40" height="20"/><use href="#car-mini" x="-176" y="159" width="40" height="20"/><use href="#car-mini" x="-220" y="159" width="40" height="20"/><use href="#car-mini" x="-264" y="159" width="40" height="20"/><use href="#car-mini" x="-308" y="159" width="40" height="20"/><use href="#car-mini" x="-352" y="159" width="40" height="20"/><use href="#car-mini" x="-396" y="159" width="40" height="20"/><use href="#car-mini" x="-440" y="159" width="40" height="20"/><use href="#car-mini" x="-484" y="159" width="40" height="20"/><use href="#car-mini" x="-528" y="159" width="40" height="20"/><use href="#car-mini" x="-572" y="159" width="40" height="20"/><use href="#car-mini" x="-616" y="159" width="40" height="20"/><use href="#car-mini" x="-660" y="159" width="40" height="20"/><use href="#car-mini" x="-704" y="159" width="40" height="20"/><use href="#car-mini" x="-748" y="159" width="40" height="20"/><use href="#car-mini" x="-792" y="159" width="40" height="20"/></g>
+      <g class="dcar" id="u-LM"><use href="#car-mini" x="-44" y="243" width="40" height="20"/><use href="#car-mini" x="-88" y="243" width="40" height="20"/><use href="#car-mini" x="-132" y="243" width="40" height="20"/><use href="#car-mini" x="-176" y="243" width="40" height="20"/><use href="#car-mini" x="-220" y="243" width="40" height="20"/><use href="#car-mini" x="-264" y="243" width="40" height="20"/><use href="#car-mini" x="-308" y="243" width="40" height="20"/><use href="#car-mini" x="-352" y="243" width="40" height="20"/><use href="#car-mini" x="-396" y="243" width="40" height="20"/><use href="#car-mini" x="-440" y="243" width="40" height="20"/><use href="#car-mini" x="-484" y="243" width="40" height="20"/><use href="#car-mini" x="-528" y="243" width="40" height="20"/><use href="#car-mini" x="-572" y="243" width="40" height="20"/><use href="#car-mini" x="-616" y="243" width="40" height="20"/><use href="#car-mini" x="-660" y="243" width="40" height="20"/><use href="#car-mini" x="-704" y="243" width="40" height="20"/><use href="#car-mini" x="-748" y="243" width="40" height="20"/></g>
+      <g class="dcar" id="u-S"><use href="#car-off" x="-175" y="191" width="175" height="80"/><use class="fate" href="#blind-off" x="-175" y="191" width="175" height="80"/></g>
+      <g class="dcar" id="u-N2"><use href="#car-nav" x="-175" y="191" width="175" height="80"/></g>
+      <g class="dcar" id="u-N1"><use href="#car-nav" x="-175" y="191" width="175" height="80"/><use class="fate" href="#blind-nav" x="-175" y="191" width="175" height="80"/></g>
+      <g class="dcar" id="u-L"><ellipse cx="-102" cy="184" rx="92" ry="5" fill="#e800a5" opacity=".35"/><use href="#car-lab" x="-200" y="103" width="196" height="90"/><use href="#shine" x="-200" y="103" width="196" height="90"/></g>
     </svg>
 
     <div class="drive-caption" aria-live="polite">
       <p class="drive-mile" id="drive-mile">Before you go</p>
-      <p id="drive-text">Three cars, three drivers in glasses, one road. Press Drive.</p>
+      <p id="drive-text">Thirty-six county cars, two navigators and one very nice car. Press Drive.</p>
       <p id="drive-verdict" hidden></p>
     </div>
   </div>
@@ -560,8 +652,16 @@ footer{max-width:var(--wide);margin:0 auto;padding:2rem 1.25rem 3rem;font-family
 
           <div class="lane" data-seat="navigator">
             <p class="lane-name">In the navigator's car</p>
-            <p>Election officials are wary of outsiders. You borrow credibility before you earn it.</p>
+            <p>Election officials trust an introduction more than a title. You borrow credibility before you earn it.</p>
             <ul class="kit">
+              <li>
+                <h4>A baseline, office by office</h4>
+                <p>The <a href="https://readyfortuesday.com/ready-to-use/ready-for-ai/">Ready for AI Risks</a> guide, handed to each official as a starting point. Take the parts that fit this state. Leave the rest. The point is to learn where each office stands on AI risk and cyber risk, and what each official is actually worried about. In a state with one navigator, or a few, that is how you find the first wins the counties asked for.</p>
+                <dl class="meta">
+                  <div><dt>Today</dt><dd><span class="status exists">Exists.</span> Ready for Tuesday's guide.</dd></div>
+                  <div><dt>Who builds it</dt><dd>The navigator trims it. Each office fills it in.</dd></div>
+                </dl>
+              </li>
               <li>
                 <h4>A vendor map</h4>
                 <p>Every vendor that touches election systems in the state. A named contact at each. What each contract says happens after an incident.</p>
@@ -636,8 +736,9 @@ footer{max-width:var(--wide);margin:0 auto;padding:2rem 1.25rem 3rem;font-family
             <ul>
               <li>A name and a cell number.</li>
               <li>One page: what to call them for, and who else to call.</li>
+              <li>The <a href="https://readyfortuesday.com/ready-to-use/ready-for-ai/">Ready for AI Risks</a> guide, to name your risks, understand them and decide what comes first. Do the parts that fit. Skip the rest.</li>
               <li>Nothing to install.</li>
-              <li>You give 15 minutes: your vendors and your IT contact.</li>
+              <li>You give 15 minutes: your vendors, your IT contact and what worries you.</li>
             </ul>
           </div>
 
@@ -648,7 +749,7 @@ footer{max-width:var(--wide);margin:0 auto;padding:2rem 1.25rem 3rem;font-family
               <li>The calendar is set by statute.</li>
               <li>Many local offices struggle with basic cybersecurity hygiene and timely patching. CISA's words.<sup><a href="#s5">5</a></sup></li>
               <li>The vendor is the stack. The Wake County exposure came through a vendor with read-only access.<sup><a href="#s1">1</a></sup></li>
-              <li>Election officials are wary of outsiders. An introduction gets a meeting.</li>
+              <li>Election officials trust an introduction more than a title. Get one.</li>
               <li>Day one is for listening. Sit in on a county scenario. Build nothing yet.</li>
             </ul>
           </div>
@@ -662,15 +763,18 @@ footer{max-width:var(--wide);margin:0 auto;padding:2rem 1.25rem 3rem;font-family
           <span class="sign-post"></span>
         </div>
         <div>
-          <p class="hazard"><svg aria-hidden="true"><use href="#hazard"/></svg><span>Hazard.</span> Without the lab, the navigator's triage tool is a PDF.</p>
+          <p class="hazard"><svg aria-hidden="true"><use href="#hazard"/></svg><span>Hazard.</span> Without the lab, the navigator's tools are checklists and PDFs.</p>
+          <span class="flag">Needs more work</span>
+          <p class="flag-note">Most election officials have not seen what these tools do. Neither have many of the people advising them. This stop has to show it, not describe it. The examples below are placeholders until lab teams supply real ones.</p>
 
           <div class="lane" data-seat="navigator">
             <p class="lane-name">In the navigator's car</p>
             <p>Deliver the scenario at the state association meeting. Not a slide deck. Paint the picture and let the room decide what to line up.</p>
             <ul>
               <li>Run the scenario with a few counties. Each leaves with a short checklist.</li>
+              <li>Bring one tool and run it on a real email from someone in the room. Watching it work does more than a slide about it.</li>
               <li>Draft the vendor map.</li>
-              <li>Find the counties that say yes first. They are the test bed.</li>
+              <li>Start with the counties whose baseline says phishing is what keeps them up at night. They say yes first. They are the test bed.</li>
             </ul>
           </div>
 
@@ -678,6 +782,7 @@ footer{max-width:var(--wide);margin:0 auto;padding:2rem 1.25rem 3rem;font-family
             <p class="lane-name">In the election official's car</p>
             <ul>
               <li>Run the scenario once. Work the checklist.</li>
+              <li>Ask the navigator to run one tool on one of your own emails.</li>
               <li>Test the number.</li>
               <li>Know who can see your poll worker roster.</li>
             </ul>
@@ -685,13 +790,14 @@ footer{max-width:var(--wide);margin:0 auto;padding:2rem 1.25rem 3rem;font-family
 
           <div class="lane" data-seat="lab">
             <p class="lane-name">In the frontier lab's car</p>
-            <h3>Build in the inbox and the logs.</h3>
-            <p>All of it inside the office's own environment.</p>
-            <ul>
-              <li>A triage assistant that reads a suspicious message and says what it is and what to do.</li>
-              <li>A log reader that explains a vendor's export to an office with no security team.</li>
-              <li>A contract reader that pulls incident terms out of vendor agreements.</li>
-              <li>An exposure summary written for a clerk.</li>
+            <h3>What a lab can actually do for a county office.</h3>
+            <p>Build for the three places an attack shows up first: the email inbox, the vendor's access logs and the vendor's contract. Everything runs on the office's own computers. Here is what it looks like.</p>
+            <ul class="looks">
+              <li><h4>A suspicious email, checked.</h4><p>A clerk forwards an email to a tool. Thirty seconds later: the sender's domain is one letter off from the vendor's, the link asks for a login, do not click, call the vendor at the number on the contract. Ready for Tuesday's Message Triage tool does a version of this today.</p></li>
+              <li><h4>A vendor's log, read.</h4><p>After an incident the vendor sends 400 lines of access logs. Nobody in the office reads logs. The model does, and says: three logins from one out-of-state address Monday night, one export of the poll worker roster at 9:31 p.m.</p></li>
+              <li><h4>Every contract in the state, read overnight.</h4><p>Who has to notify whom after an incident, and within how many hours, pulled from every vendor agreement into one table.</p></li>
+              <li><h4>A scenario for this county, not a template.</h4><p>The story at the top of this page, rewritten with this county's vendors, calendar and staff size. An afternoon, not a grant cycle.</p></li>
+              <li><h4>A model that lives in the office.</h4><p>When Hugging Face was attacked in July, hosted models refused to read the attack logs. Responders ran an open-weight model on their own hardware instead.<sup><a href="#s10">10</a></sup> A county office needs the same thing, on a computer it owns, vetted before anything happens.</p></li>
             </ul>
             <p>Do not build anything that touches tabulation, voter registration or results reporting. Those systems are certified or vendor-controlled.</p>
           </div>
@@ -721,7 +827,8 @@ footer{max-width:var(--wide);margin:0 auto;padding:2rem 1.25rem 3rem;font-family
           <div class="lane" data-seat="official">
             <p class="lane-name">In the election official's car</p>
             <ul>
-              <li>A named navigator and a routing. Cyber, call this person. Deepfake, call that one.</li>
+              <li>A named navigator and a routing. Cyber, call this person. A communications problem, call that one.</li>
+              <li>Bring two things to the room: what the scenario turned up and what the triage tool caught. <button class="peek" type="button" data-pop="pop-bring">See a sample</button></li>
               <li>Run the scenario again with your vendor in the room.</li>
             </ul>
           </div>
@@ -740,19 +847,20 @@ footer{max-width:var(--wide);margin:0 auto;padding:2rem 1.25rem 3rem;font-family
       <!-- MILE 12 -->
       <article class="stop" id="month-12">
         <div class="milepost">
-          <span class="sign"><b>Mile 12</b><small>The association.</small></span>
+          <span class="sign"><b>Mile 12</b><small>Someone answers.</small></span>
           <span class="sign-post"></span>
         </div>
         <div>
-          <p class="hazard"><svg aria-hidden="true"><use href="#hazard"/></svg><span>Hazard.</span> Without all three, there is no association. There is a listserv.</p>
+          <p class="hazard"><svg aria-hidden="true"><use href="#hazard"/></svg><span>Hazard.</span> Without all three, there is no phone. There is a listserv.</p>
+          <svg class="redphone" viewBox="0 0 120 100" role="img" aria-label="A red telephone"><use href="#redphone"/></svg>
 
           <div class="lane" data-seat="navigator">
             <p class="lane-name">In the navigator's car</p>
+            <p>Mile 12 is not an organization chart. It is a phone.</p>
             <ul>
-              <li>A roster of 100 navigators who know each other by name.</li>
-              <li>A shared kit any new state can pick up on its day one.</li>
-              <li>An Association of Navigators with a standing seat for labs and one for election officials.</li>
-              <li>A funding ask with a number on it.</li>
+              <li>A red phone on the desk of every navigator, every lab team on this road and the state election director. Pick it up and someone answers. Fast.</li>
+              <li>What gets a call: something new a model can do, a suspected incident, a rumor of one. It does not have to be an attack. It has to be worth knowing.</li>
+              <li>Every navigator knows who answers in the other states. Any new state can pick up the kit on its day one.</li>
             </ul>
           </div>
 
@@ -760,6 +868,7 @@ footer{max-width:var(--wide);margin:0 auto;padding:2rem 1.25rem 3rem;font-family
             <p class="lane-name">In the election official's car</p>
             <ul>
               <li>Your navigator is still there.</li>
+              <li>When something looks wrong, you make one call and the word gets out.</li>
               <li>One scenario a year. One checklist.</li>
             </ul>
           </div>
@@ -767,8 +876,8 @@ footer{max-width:var(--wide);margin:0 auto;padding:2rem 1.25rem 3rem;font-family
           <div class="lane" data-seat="lab">
             <p class="lane-name">In the frontier lab's car</p>
             <ul>
-              <li>A standing feedback loop with 100 practitioners.</li>
-              <li>A model a county can run on its own hardware.</li>
+              <li>A phone that rings when a county sees something your model did.</li>
+              <li>A phone you pick up to say what you have seen, before it lands on a clerk.</li>
               <li>The outcome that would be a miracle: your company understands how elections actually work.</li>
             </ul>
           </div>
@@ -781,9 +890,8 @@ footer{max-width:var(--wide);margin:0 auto;padding:2rem 1.25rem 3rem;font-family
       <h3>Open questions from the meeting</h3>
       <ul>
         <li>Are existing lab or partner teams already doing navigator work without the name?</li>
-        <li>Where do communications navigators sit? Inside the association or beside it?</li>
-        <li>Who hosts the mile-six gathering, and who pays?</li>
-        <li>What is the number at mile 12?</li>
+        <li>Where do communications navigators sit? On the same phone or a different one?</li>
+        <li>What is the number at mile 12? Navigators, states, dollars.</li>
       </ul>
     </div>
   </div>
@@ -794,6 +902,8 @@ footer{max-width:var(--wide);margin:0 auto;padding:2rem 1.25rem 3rem;font-family
     <h2>What open weights change.</h2>
     <p class="lede">An open-weight model is one whose trained parameters are published for anyone to download, run or change.<sup><a href="#s12">12</a></sup> No vendor account. No usage policy. No log anyone else can see.</p>
     <p>For a county election office, that changes three things.</p>
+    <span class="flag">Needs review</span>
+    <p class="flag-note">Before this section goes further, people who do this work should check two things. Is the threat described as it is? And what does an attack built this way actually look like, step by step, so a clerk can picture it?</p>
 
     <h3>The phish is free and in your voice.</h3>
     <p>An open-weight model's refusals can be removed with modest fine-tuning,<sup><a href="#s13">13</a></sup> and general models are easily turned into phishing-focused ones.<sup><a href="#s14">14</a></sup> At Black Hat in August, Google's and Accenture's threat teams said criminal and state-aligned groups are using open-weight models to get around the guardrails on commercial ones.<sup><a href="#s15">15</a></sup></p>
@@ -807,7 +917,8 @@ footer{max-width:var(--wide);margin:0 auto;padding:2rem 1.25rem 3rem;font-family
     <h3>It cuts both ways.</h3>
     <p>When an autonomous agent system broke into Hugging Face in July and ran more than 17,000 actions, responders tried hosted frontier models first. The guardrails blocked the attack logs. They ran GLM 5.2, an open-weight model, on their own hardware. No attacker data left their environment.<sup><a href="#s10">10</a></sup> Their advice: have a capable model vetted and running locally before an incident.<sup><a href="#s11">11</a></sup></p>
 
-    <h3>Cases to put in front of a clerk.</h3>
+    <details class="cases-wrap">
+      <summary>Five cases to put in front of a clerk.</summary>
     <ul class="cases">
       <li>
         <h4>Wake County, N.C. August 2026.</h4>
@@ -830,6 +941,7 @@ footer{max-width:var(--wide);margin:0 auto;padding:2rem 1.25rem 3rem;font-family
         <p>An intrusion run end to end by an autonomous agent system. Investigated with an open-weight model after hosted models refused.<sup><a href="#s10">10</a></sup></p>
       </li>
     </ul>
+    </details>
 
     <p class="pivot">The threat is cheap, local and unmonitored. The defense has to be cheap, local and present. A person with a phone, a kit and a model that runs in the office.</p>
   </div>
@@ -838,24 +950,26 @@ footer{max-width:var(--wide);margin:0 auto;padding:2rem 1.25rem 3rem;font-family
 <section id="ask">
   <div class="inner">
     <h2>The ask.</h2>
+    <p class="lede">None of this happens in a meeting. It happens over a year, one mile at a time, among three groups with good reasons to be careful about each other. So the ask is small, specific and repeated.</p>
     <div class="ask-grid">
       <div>
         <h4>Election officials</h4>
-        <p>Fifteen minutes on day one. One scenario a year.</p>
+        <p>Give a navigator 15 minutes on day one: your vendors, your IT contact and what worries you. Run one scenario a year with the navigator in the room. Say what broke, in plain words, so the people building tools can hear it.</p>
       </div>
       <div>
         <h4>Navigators</h4>
-        <p>Go where they already gather. Draw the line. Build the map. Be in the room at mile six.</p>
+        <p>Go where officials already gather. Hand them the baseline and use only the parts that fit. Draw the line once so everyone knows what you cover. Keep showing up. Trust here is built over months, not meetings.</p>
       </div>
       <div>
         <h4>Frontier labs</h4>
-        <p>Listen before you build. Build in the inbox and the logs. Package a model a county can run itself. Take the standing seat.</p>
+        <p>Listen before you build. Build small things that help on the day: a tool that checks a suspicious email, a reader for a vendor's logs, a model an office can run on its own computer. Expect the first version to be wrong about how counties work. Fix it without being asked twice. Drive at the convoy's speed.</p>
       </div>
       <div>
         <h4>This group</h4>
-        <p>Write the line once. Fund the first gathering. Put a number on mile 12.</p>
+        <p>Pick one state. Write the line once. Put the first gathering on a calendar. Put a number on mile 12. Then stay with it long enough to learn what the second year needs.</p>
       </div>
     </div>
+    <p class="pivot">Each group will hear this differently. Officials hear one more thing to do. Navigators hear a job that got bigger. Labs hear a slow road. All three are right. The road is still worth driving.</p>
   </div>
 </section>
 
@@ -890,8 +1004,72 @@ footer{max-width:var(--wide);margin:0 auto;padding:2rem 1.25rem 3rem;font-family
 
 </main>
 
+<dialog id="pop-email" class="pop" aria-labelledby="pop-email-t">
+  <div class="pop-inner" tabindex="-1" autofocus>
+    <p class="pop-tag">Fiction. For training. The vendor, the name and the domain are made up.</p>
+    <h3 id="pop-email-t">Monday, 4:52 p.m. The email.</h3>
+    <div class="mail">
+      <div class="mail-head">
+        <div><b>From</b> Rosterline Support &lt;support@rosterlime.com&gt;</div>
+        <div><b>To</b> Dana Whitfield, Deputy Clerk</div>
+        <div><b>Subject</b> Action needed before the Oct. 20 special election</div>
+      </div>
+      <div class="mail-body">
+        <p>Hi Dana,</p>
+        <p>Ahead of the Oct. 20 special election, we are asking every county to re-verify its e-pollbook login so your poll worker roster syncs on time. It takes about a minute.</p>
+        <p><span class="fakelink">Verify my login</span></p>
+        <p>If you have already done this, thank you. Questions? Just reply to this email.</p>
+        <p>Thanks,<br>Rosterline Support</p>
+      </div>
+    </div>
+    <p class="pop-note">What gave it away: nothing, in the moment. The domain is one letter off. The vendor's real support number is on the contract, not in the email.</p>
+    <button class="go secondary pop-close" type="button">Close</button>
+  </div>
+</dialog>
+
+<dialog id="pop-text" class="pop" aria-labelledby="pop-text-t">
+  <div class="pop-inner" tabindex="-1" autofocus>
+    <p class="pop-tag">Fiction. For training.</p>
+    <h3 id="pop-text-t">Tuesday, 5:40 a.m. The text.</h3>
+    <div class="phone">
+      <div class="phone-from">Unknown number &middot; 5:40 a.m.</div>
+      <div class="bubble">County Clerk's Office: Your polling place for Tuesday has moved. Reply YES to confirm you received this and we will send the new address.</div>
+    </div>
+    <p class="pop-note">Sent to every name on the roster. Nobody at the office sent it. The roster made it possible.</p>
+    <button class="go secondary pop-close" type="button">Close</button>
+  </div>
+</dialog>
+
+<dialog id="pop-bring" class="pop" aria-labelledby="pop-bring-t">
+  <div class="pop-inner" tabindex="-1" autofocus>
+    <p class="pop-tag">Sample. The entries are made up.</p>
+    <h3 id="pop-bring-t">What the triage tool caught.</h3>
+    <div class="triage">
+      <div class="triage-head"><span class="status missing">Do not click.</span> This looks like phishing.</div>
+      <dl>
+        <dt>Sender</dt><dd>support@rosterlime.com. The vendor on your contract is rosterline.com. One letter is different.</dd>
+        <dt>The ask</dt><dd>A login link, with a deadline.</dd>
+        <dt>Pressure</dt><dd>A real date, next week's special election, used to make you hurry.</dd>
+        <dt>Do this</dt><dd>Call the vendor at the number on the contract, not the one in the email. Forward the email to your navigator.</dd>
+      </dl>
+    </div>
+    <h3>What the baseline turned up.</h3>
+    <p class="flag-note">Three lines from one office's Ready for AI Risks register. The format is a placeholder until it matches the guide.</p>
+    <table class="register">
+      <thead><tr><th>Risk</th><th>In this office</th><th>Worried</th><th>First step</th></tr></thead>
+      <tbody>
+        <tr><td>An email that looks like a vendor</td><td>Two of us have portal logins. Vendor email arrives most days.</td><td>High</td><td>Vendor numbers on paper by every desk. Two-step login turned on.</td></tr>
+        <tr><td>A fake message to poll workers</td><td>We text poll workers from a shared cell phone.</td><td>High</td><td>Tell poll workers in training how the office will and will not contact them.</td></tr>
+        <tr><td>Office data pasted into a tool nobody checked</td><td>A temp used a free AI tool to tidy the poll worker list.</td><td>Medium</td><td>One page of dos and don'ts for the office.</td></tr>
+      </tbody>
+    </table>
+    <p class="pop-note">The navigator reads 30 of these and knows which counties to visit first and what to bring.</p>
+    <button class="go secondary pop-close" type="button">Close</button>
+  </div>
+</dialog>
+
 <footer>
-  Ready for Tuesday. Working draft, Oct. 12, 2026. The scenario is fiction. The cases are not. The cars are a metaphor. The ditch is not.
+  Ready for Tuesday. Working draft, Oct. 13, 2026. The scenario is fiction. The cases are not. The cars are a metaphor. The ditch is not.
 </footer>
 
 <script>
@@ -912,9 +1090,10 @@ footer{max-width:var(--wide);margin:0 auto;padding:2rem 1.25rem 3rem;font-family
 </script>
 <script>
 (function(){
-  var MILES=[150,450,750,1050], LABELS=['Mile 0','Mile 3','Mile 6','Mile 12'];
-  var ORDER=['N','O','L'];
-  var cars={N:document.getElementById('dcar-N'),O:document.getElementById('dcar-O'),L:document.getElementById('dcar-L')};
+  var MILES=[175,525,875,1225], LABELS=['Mile 0','Mile 3','Mile 6','Mile 12'];
+  var UNITS={L:{car:'L',w:210},UM:{car:'O',w:800},N1:{car:'N',w:185},N2:{car:'N',w:185},S:{car:'O',w:185},LM:{car:'O',w:756}};
+  var LANES={up:['L','UM'],lo:['N1','N2','S','LM']};
+  var els={};Object.keys(UNITS).forEach(function(u){els[u]=document.getElementById('u-'+u);});
   var toggles=Array.prototype.slice.call(document.querySelectorAll('.convoy-toggle'));
   var go=document.getElementById('drive-go'), reset=document.getElementById('drive-reset');
   var box=document.querySelector('.drive-caption'), mileEl=document.getElementById('drive-mile'), textEl=document.getElementById('drive-text'), verdictEl=document.getElementById('drive-verdict');
@@ -925,25 +1104,25 @@ footer{max-width:var(--wide);margin:0 auto;padding:2rem 1.25rem 3rem;font-family
            'Still nothing. The EI-ISAC used to cover some of this road. Its federal funding ended in March 2025.'+ref(2),
            'The phishing email arrives anyway.'],
          v:'No convoy. The road is there. Nobody is on it.',f:{}},
-    'O':{m:['She knows what she needs to line up. She has 15 minutes and nobody to call.',
+    'O':{m:['Thirty-six county cars and nobody leading. She knows what she needs to line up. She has 15 minutes and nobody to call.',
             'The special election, the budget and the marriage licenses come first. The checklist waits.',
             'A vendor with read-only access to her database reports a possible cyberattack. Ask Wake County.'+ref(1),
             'She finds the thing in the road with the front bumper.'],
-         v:'Good driver. Sticky notes. No navigator.',f:{O:'notes'}},
-    'N':{m:['He has the map and the phone tree. Election officials are wary of outsiders, and nobody has vouched for him.',
+         v:'Good drivers. Sticky notes. No navigator.',f:{O:'notes'}},
+    'N':{m:['He has the map and the phone tree. Nobody the counties trust has vouched for him yet.',
             'He delivers the scenario. The room nods. No county signs up.',
             'He meets the other navigators. They compare maps. Nobody can see what got repaved last night.',
             'A roster of navigators and a kit that is a PDF.'],
          v:'A very accurate map of last year\u2019s road.',f:{N:'map'}},
-    'L':{m:['It builds something brilliant on day one. It touches tabulation, which is certified and vendor-controlled.',
-            'It emails every clerk in the state. Election officials are wary of outsiders. Zero replies.',
-            'It launches at a conference election officials do not attend.',
-            'The clerk\u2019s office. The ditch. The blog post.'],
-         v:'Fastest car on the road. No windows.',f:{L:'ditch'}},
+    'L':{m:['It leaves at 6:10 a.m. in the fastest car on the road. Nobody from a county is in it.',
+            'Mile 3 by breakfast. It emails every clerk in the state. Zero replies. It is already at mile six.',
+            'Mile 6 by lunch. It launches at a conference election officials do not attend. It is already past mile 12.',
+            'It arrives. The clerk it built for is still at mile 0.'],
+         v:'Fastest car on the road. It arrives alone.',f:{L:'gone'}},
     'ON':{m:['Introductions from people the officials trust. The kit starts. It is all paper.',
              'The scenario runs in a few counties. The checklist is good. The phishing email is still written by a model on a laptop that nobody is watching.'+ref(13)+ref(16),
              'The navigators meet. The vendor map is done by hand. No office has a model it can run itself.',
-             'An association and a kit. Attackers run open-weight models inside the attack chain.'+ref(16)+' The defense runs a PDF.'],
+             'A phone tree and a kit. Attackers run open-weight models inside the attack chain.'+ref(16)+' The defense runs a PDF.'],
          v:'Last year\u2019s road, driven carefully, together.',f:{N:'map'}},
     'OL':{m:['The lab meets one clerk. It now knows one county.',
              'It builds for that county. The other counties are different, and nobody is carrying the tool to them.',
@@ -955,40 +1134,48 @@ footer{max-width:var(--wide);margin:0 auto;padding:2rem 1.25rem 3rem;font-family
              'The gathering is navigators and labs. They build for an audience of each other.',
              'A great kit. Shrink-wrapped.'],
          v:'Great kit. Still in the box.',f:{}},
-    'ONL':{m:['Introductions from people the officials trust. Fifteen minutes. The kit starts, and the lab listens.',
-              'The scenario runs where officials already gather. The vendor map drafts. The lab builds in the inbox and the logs.',
+    'ONL':{m:['Introductions from people the officials trust. Fifteen minutes. The kit starts. The fast car agrees to drive at the convoy\u2019s speed.',
+              'The scenario runs where officials already gather. The vendor map drafts. The lab builds a tool that checks a suspicious email and one that reads a vendor\u2019s logs.',
               'The navigators meet. Labs show what they built. Officials say what broke. The routing list exists.',
-              'A roster of 100. A shared kit. A model that runs in the office. A standing seat for everyone.'],
+              'A shared kit. A model that runs in the office. A phone that someone answers.'],
          v:'The view clears.',f:{}}
   };
   var inConvoy={O:true,N:true,L:true}, mile=-1;
   function key(){return (inConvoy.O?'O':'')+(inConvoy.N?'N':'')+(inConvoy.L?'L':'');}
   function place(){
-    var present=ORDER.filter(function(c){return inConvoy[c];});
-    ORDER.forEach(function(c){
-      var g=cars[c], i=present.indexOf(c);
-      g.classList.remove('notes','map','ditch');
-      if(i<0){
-        g.style.opacity='0';
-        g.style.transform='translateX('+(mile<0?-700:MILES[mile]+320)+'px) translateY(44px) rotate(12deg)';
-        return;
-      }
-      g.style.opacity='1';
-      var tx=mile<0?(-260-230*i):(MILES[mile]-100-230*i);
-      g.style.transform='translateX('+tx+'px)';
+    var M=mile<0?-80:MILES[mile];
+    Object.keys(LANES).forEach(function(lane){
+      var x=M;
+      LANES[lane].forEach(function(u){
+        var g=els[u], here=inConvoy[UNITS[u].car], fx=x;
+        g.classList.remove('notes','map');
+        if(u==='L'&&key()==='L'&&mile>=1){fx=mile===1?MILES[2]:(mile===2?MILES[3]+60:1900);}
+        if(!here){g.style.opacity='0';g.style.transform='translateX('+fx+'px) translateY(70px)';return;}
+        g.style.opacity='1';g.style.transform='translateX('+fx+'px)';
+        x-=UNITS[u].w;
+      });
     });
     if(mile===3){
-      var f=S[key()].f;
-      Object.keys(f).forEach(function(c){
-        cars[c].classList.add(f[c]);
-        if(f[c]==='ditch'){cars[c].style.transform='translateX('+(MILES[3]-100+40)+'px) translateY(44px) rotate(14deg)';}
-      });
+      var fate=S[key()].f;
+      if(fate.O==='notes'){els.S.classList.add('notes');}
+      if(fate.N==='map'){els.N1.classList.add('map');}
     }
+  }
+  function roster(){
+    var parts=[];
+    if(inConvoy.O){parts.push('36 county cars');}
+    if(inConvoy.N){parts.push('two navigators');}
+    if(inConvoy.L){parts.push('one very nice car');}
+    if(!parts.length){return 'Nobody in the convoy. Press Drive anyway.';}
+    var s=parts.length>1?parts.slice(0,-1).join(', ')+' and '+parts[parts.length-1]:parts[0];
+    s=s.charAt(0).toUpperCase()+s.slice(1);
+    if(s.indexOf('36')===0){s='Thirty-six'+s.slice(2);}
+    return s+', one road. Press Drive.';
   }
   function narrate(){
     var s=S[key()];
     verdictEl.hidden=true;
-    if(mile<0){box.classList.remove('verdict');mileEl.textContent='Before you go';textEl.innerHTML='Three cars, three drivers in glasses, one road. Press Drive.';return;}
+    if(mile<0){box.classList.remove('verdict');mileEl.textContent='Before you go';textEl.innerHTML=roster();return;}
     if(mile<3){box.classList.remove('verdict');mileEl.textContent=LABELS[mile];textEl.innerHTML=s.m[mile];return;}
     box.classList.add('verdict');mileEl.textContent=LABELS[3];textEl.innerHTML=s.m[3];verdictEl.innerHTML=s.v;verdictEl.hidden=false;
   }
@@ -1006,5 +1193,24 @@ footer{max-width:var(--wide);margin:0 auto;padding:2rem 1.25rem 3rem;font-family
   render();
 })();
 </script>
+<script>
+(function(){
+  var openers=Array.prototype.slice.call(document.querySelectorAll('[data-pop]'));
+  openers.forEach(function(b){b.addEventListener('click',function(){
+    var d=document.getElementById(b.getAttribute('data-pop'));
+    if(!d){return;}
+    document.documentElement.classList.add('pop-open');
+    if(typeof d.showModal==='function'){d.showModal();}else{d.setAttribute('open','');}
+  });});
+  Array.prototype.slice.call(document.querySelectorAll('dialog.pop')).forEach(function(d){
+    Array.prototype.slice.call(d.querySelectorAll('.pop-close')).forEach(function(c){c.addEventListener('click',function(){d.close();});});
+    d.addEventListener('click',function(e){if(e.target===d){d.close();}});
+    d.addEventListener('close',function(){document.documentElement.classList.remove('pop-open');});
+  });
+})();
+</script>
+
+<!-- Review layer. Paste the Apps Script URL into data-sheet. Delete these two lines when the page is final. -->
+<script src="review.js" data-sheet="" data-project="Day One roadmap"></script>
 </body>
 </html>
